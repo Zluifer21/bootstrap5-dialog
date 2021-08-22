@@ -12,8 +12,8 @@
  * Licensed under The MIT License.
  * ================================================ */
 (function (root, factory) {
- 
-    "use strict"; 
+
+    "use strict";
 
     // CommonJS module is defined
     if (typeof module !== 'undefined' && module.exports) {
@@ -38,9 +38,11 @@
      * Extend Bootstrap Modal and override some functions.
      * BootstrapDialogModal === Modified Modal.
      * ================================================ */
-    var Modal = $.fn.modal.Constructor;
+    var Modal = bootstrap.Modal ?  bootstrap.Modal : $.fn.modal.Constructor;
     var BootstrapDialogModal = function (element, options) {
-        if (/4\.1\.\d+/.test($.fn.modal.Constructor.VERSION)) { //FIXME for BootstrapV4
+        if(bootstrap && bootstrap.Modal && /^5\.1\./.test(bootstrap.Modal.VERSION)) {
+            return new Modal(element, options);
+        } else if (/4\.1\.\d+/.test($.fn.modal.Constructor.VERSION)) { //FIXME for BootstrapV4
             return new Modal(element, options);
         } else {
             Modal.call(this, element, options);
@@ -48,7 +50,9 @@
     };
     BootstrapDialogModal.getModalVersion = function () {
         var version = null;
-        if (typeof $.fn.modal.Constructor.VERSION === 'undefined') {
+        if(bootstrap && bootstrap.Modal && /^5\.1\./.test(bootstrap.Modal.VERSION)) {
+            version = 'v5.1';
+        } else if (typeof $.fn.modal.Constructor.VERSION === 'undefined') {
             version = 'v3.1';
         } else if (/3\.2\.\d+/.test($.fn.modal.Constructor.VERSION)) {
             version = 'v3.2';
@@ -146,6 +150,7 @@
     };
     BootstrapDialogModal.METHODS_TO_OVERRIDE['v3.3.4'] = $.extend({}, BootstrapDialogModal.METHODS_TO_OVERRIDE['v3.3']);
     BootstrapDialogModal.METHODS_TO_OVERRIDE['v4.1'] = $.extend({}, BootstrapDialogModal.METHODS_TO_OVERRIDE['v3.3']); //FIXME for BootstrapV4
+    BootstrapDialogModal.METHODS_TO_OVERRIDE['v5.1'] = $.extend({}, BootstrapDialogModal.METHODS_TO_OVERRIDE['v4.1']); //FIXME for BootstrapV5
     BootstrapDialogModal.prototype = {
         constructor: BootstrapDialogModal,
         /**
@@ -231,7 +236,7 @@
     BootstrapDialog.BUTTON_SIZES[BootstrapDialog.SIZE_SMALL] = 'btn-small';
     BootstrapDialog.BUTTON_SIZES[BootstrapDialog.SIZE_WIDE] = 'btn-block';
     BootstrapDialog.BUTTON_SIZES[BootstrapDialog.SIZE_LARGE] = 'btn-lg';
-    BootstrapDialog.ICON_SPINNER = 'glyphicon glyphicon-asterisk';
+    BootstrapDialog.ICON_SPINNER = 'fas fa-spinner';
     BootstrapDialog.BUTTONS_ORDER_CANCEL_OK = 'btns-order-cancel-ok';
     BootstrapDialog.BUTTONS_ORDER_OK_CANCEL = 'btns-order-ok-cancel';
     BootstrapDialog.Z_INDEX_BACKDROP = 1040;
@@ -391,6 +396,20 @@
             return this.getModal().get(0);
         }
     };
+    BootstrapDialog.METHODS_TO_OVERRIDE['v5.1'] = $.extend({}, BootstrapDialog.METHODS_TO_OVERRIDE['v4.1'], {
+        createCloseButton: function () {
+            var $container = $('<div></div>');
+            $container.addClass(this.getNamespace('close-button'));
+            var $icon = $('<button class="btn-close" aria-label="close"></button>');
+            // $icon.append(this.options.closeIcon);
+            $container.append($icon);
+            $container.on('click', { dialog: this }, function (event) {
+                event.data.dialog.close();
+            });
+
+            return $container;
+        },
+    });
     BootstrapDialog.prototype = {
         constructor: BootstrapDialog,
         initOptions: function (options) {
@@ -1182,7 +1201,7 @@
             return this;
         },
         realize: function () {
-            this.initModalStuff(); 
+            this.initModalStuff();
             this.getModal().addClass(BootstrapDialog.NAMESPACE)
                 .addClass(this.getCssClass());
             this.updateSize();
