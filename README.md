@@ -3,9 +3,9 @@ bootstrap4-dialog
 
 [![Latest release](https://img.shields.io/github/release/GedMarc/bootstrap4-dialog.svg)](https://github.com/GedMarc/bootstrap4-dialog/releases/latest)
 
-## Fully compatible with Bootstrap 4.3.1
+## Fully compatible with Bootstrap 5.1.0
 ## Includes size-extrawide full width display
-## Includes all colour themes from Bootstrap 4
+## Includes all colour themes from Bootstrap 4 & 5
 
 Make use of Bootstrap Modal more monkey-friendly.
 
