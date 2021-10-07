@@ -1145,7 +1145,7 @@
                     $(this).remove();
                 }
                 BootstrapDialog.moveFocus();
-                if ($('.modal').hasClass('in')) {
+                if ($('.modal').hasClass('in') || $('.modal').hasClass('show')) {
                     $('body').addClass('modal-open');
                 }
             });

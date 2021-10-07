@@ -567,14 +567,14 @@
         updateType: function () {
             if (this.isRealized()) {
                 var types = [BootstrapDialog.TYPE_DEFAULT,
-                BootstrapDialog.TYPE_INFO,
-                BootstrapDialog.TYPE_PRIMARY,
-                BootstrapDialog.TYPE_SECONDARY,
-                BootstrapDialog.TYPE_SUCCESS,
-                BootstrapDialog.TYPE_WARNING,
-                BootstrapDialog.TYPE_DARK,
-                BootstrapDialog.TYPE_LIGHT,
-                BootstrapDialog.TYPE_DANGER];
+                    BootstrapDialog.TYPE_INFO,
+                    BootstrapDialog.TYPE_PRIMARY,
+                    BootstrapDialog.TYPE_SECONDARY,
+                    BootstrapDialog.TYPE_SUCCESS,
+                    BootstrapDialog.TYPE_WARNING,
+                    BootstrapDialog.TYPE_DARK,
+                    BootstrapDialog.TYPE_LIGHT,
+                    BootstrapDialog.TYPE_DANGER];
 
                 this.getModal().removeClass(types.join(' ')).addClass(this.getType());
             }
@@ -1145,7 +1145,7 @@
                     $(this).remove();
                 }
                 BootstrapDialog.moveFocus();
-                if ($('.modal').hasClass('in')) {
+                if ($('.modal').hasClass('in') || $('.modal').hasClass('show')) {
                     $('body').addClass('modal-open');
                 }
             });
