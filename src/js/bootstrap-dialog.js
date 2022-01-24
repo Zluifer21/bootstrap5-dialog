@@ -262,6 +262,7 @@
         animate: true,
         description: '',
         tabindex: -1,
+		verticalCentered:false,
         btnsOrder: BootstrapDialog.BUTTONS_ORDER_CANCEL_OK
     };
 
@@ -567,14 +568,14 @@
         updateType: function () {
             if (this.isRealized()) {
                 var types = [BootstrapDialog.TYPE_DEFAULT,
-                BootstrapDialog.TYPE_INFO,
-                BootstrapDialog.TYPE_PRIMARY,
-                BootstrapDialog.TYPE_SECONDARY,
-                BootstrapDialog.TYPE_SUCCESS,
-                BootstrapDialog.TYPE_WARNING,
-                BootstrapDialog.TYPE_DARK,
-                BootstrapDialog.TYPE_LIGHT,
-                BootstrapDialog.TYPE_DANGER];
+                    BootstrapDialog.TYPE_INFO,
+                    BootstrapDialog.TYPE_PRIMARY,
+                    BootstrapDialog.TYPE_SECONDARY,
+                    BootstrapDialog.TYPE_SUCCESS,
+                    BootstrapDialog.TYPE_WARNING,
+                    BootstrapDialog.TYPE_DARK,
+                    BootstrapDialog.TYPE_LIGHT,
+                    BootstrapDialog.TYPE_DANGER];
 
                 this.getModal().removeClass(types.join(' ')).addClass(this.getType());
             }
@@ -797,6 +798,14 @@
         },
         setDescription: function (description) {
             this.options.description = description;
+
+            return this;
+        },
+		getVerticalCentered: function(){
+			return this.options.verticalCentered;
+		},
+        setVerticalCentered: function (verticalcentered) {
+            this.options.verticalCentered = verticalCentered;
 
             return this;
         },
@@ -1209,6 +1218,9 @@
                 this.getModal().attr('aria-describedby', this.getDescription());
             }
             //this.getModalFooter().append(this.createFooterContent());
+			if(this.getVerticalCentered()){
+				this.getModalDialog().addClass('modal-dialog-centered');
+			}
             this.getModalHeader().append(this.createHeaderContent());
             this.getModalBody().append(this.createBodyContent());
             this.getModal().data('bs.modal', new BootstrapDialogModal(this.getModalForBootstrapDialogModal(), { //FIXME for BootstrapV4
