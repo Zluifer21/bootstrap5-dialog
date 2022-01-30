@@ -262,7 +262,7 @@
         animate: true,
         description: '',
         tabindex: -1,
-		verticalCentered:false,
+        verticalCentered:false,
         btnsOrder: BootstrapDialog.BUTTONS_ORDER_CANCEL_OK
     };
 
@@ -801,9 +801,9 @@
 
             return this;
         },
-		getVerticalCentered: function(){
-			return this.options.verticalCentered;
-		},
+        getVerticalCentered: function(){
+            return this.options.verticalCentered;
+        },
         setVerticalCentered: function (verticalcentered) {
             this.options.verticalCentered = verticalCentered;
 
@@ -1218,9 +1218,9 @@
                 this.getModal().attr('aria-describedby', this.getDescription());
             }
             //this.getModalFooter().append(this.createFooterContent());
-			if(this.getVerticalCentered()){
-				this.getModalDialog().addClass('modal-dialog-centered');
-			}
+            if(this.getVerticalCentered()){
+                this.getModalDialog().addClass('modal-dialog-centered');
+            }
             this.getModalHeader().append(this.createHeaderContent());
             this.getModalBody().append(this.createBodyContent());
             this.getModal().data('bs.modal', new BootstrapDialogModal(this.getModalForBootstrapDialogModal(), { //FIXME for BootstrapV4
