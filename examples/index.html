@@ -809,6 +809,21 @@
         });
         -->
     </div>
+	
+	<a name="center-vertically-dialog"></a>
+    <h3>Center Vertically dialog.</h3>
+    <p>
+        Option 'verticalCentered' center the dialog vertically if is set to true (default:false)
+    </p>
+    <div class="source-code runnable">
+        <!--
+        BootstrapDialog.show({
+            title: 'Say-hello dialog',
+            message: 'Hi Apple!',
+	    verticalCentered:true
+	});
+        -->
+    </div>
 
     <h2>More shortcut methods</h2>
     <hr />
@@ -1110,6 +1125,15 @@ BootstrapDialog.show({
                 </td>
                 <td>
                     Automatically convert line breaking character to &lt;br /&gt; if it's set to true, everything keeps original if it's false.
+                </td>
+            </tr>
+			<tr>
+                <td>verticalCentered</td>
+                <td>
+                    true | false
+                </td>
+                <td>
+                    Center modal vertically
                 </td>
             </tr>
         </tbody>
