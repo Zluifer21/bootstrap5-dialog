@@ -42,6 +42,8 @@
     var BootstrapDialogModal = function (element, options) {
         if(bootstrap && bootstrap.Modal && /^5\.1\./.test(bootstrap.Modal.VERSION)) {
             return new Modal(element, options);
+        } else if(bootstrap && bootstrap.Modal && /^5\.0\.2/.test(bootstrap.Modal.VERSION)) {
+            return new Modal(element, options);
         } else if (/4\.1\.\d+/.test($.fn.modal.Constructor.VERSION)) { //FIXME for BootstrapV4
             return new Modal(element, options);
         } else {
@@ -52,7 +54,10 @@
         var version = null;
         if(bootstrap && bootstrap.Modal && /^5\.1\./.test(bootstrap.Modal.VERSION)) {
             version = 'v5.1';
-        } else if (typeof $.fn.modal.Constructor.VERSION === 'undefined') {
+        } else if(bootstrap && bootstrap.Modal && /^5\.0\.2/.test(bootstrap.Modal.VERSION)) {
+            version = 'v5.1';
+        }
+        else if (typeof $.fn.modal.Constructor.VERSION === 'undefined') {
             version = 'v3.1';
         } else if (/3\.2\.\d+/.test($.fn.modal.Constructor.VERSION)) {
             version = 'v3.2';
