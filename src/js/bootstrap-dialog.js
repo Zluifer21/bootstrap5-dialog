@@ -54,7 +54,8 @@
         var version = null;
         if(bootstrap && bootstrap.Modal && /^5\.1\./.test(bootstrap.Modal.VERSION)) {
             version = 'v5.1';
-        } else if(bootstrap && bootstrap.Modal && /^5\.0\.2/.test(bootstrap.Modal.VERSION)) {
+            //not compatible with 5.0.1,  regex upper bounds would have been better
+        } else if(bootstrap && bootstrap.Modal && /^5\.0\.[23456789]/.test(bootstrap.Modal.VERSION)) {
             version = 'v5.1';
         }
         else if (typeof $.fn.modal.Constructor.VERSION === 'undefined') {
