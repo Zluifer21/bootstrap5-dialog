@@ -40,7 +40,7 @@
      * ================================================ */
     var Modal = bootstrap.Modal ?  bootstrap.Modal : $.fn.modal.Constructor;
     var BootstrapDialogModal = function (element, options) {
-        if(bootstrap && bootstrap.Modal && /^5\.1\./.test(bootstrap.Modal.VERSION)) {
+        if(bootstrap && bootstrap.Modal && /^5\.[^\D0]\./.test(bootstrap.Modal.VERSION)) {
             return new Modal(element, options);
         } else if(bootstrap && bootstrap.Modal && /^5\.0\.2/.test(bootstrap.Modal.VERSION)) {
             return new Modal(element, options);
@@ -52,7 +52,7 @@
     };
     BootstrapDialogModal.getModalVersion = function () {
         var version = null;
-        if(bootstrap && bootstrap.Modal && /^5\.1\./.test(bootstrap.Modal.VERSION)) {
+        if(bootstrap && bootstrap.Modal && /^5\.[^\D0]\./.test(bootstrap.Modal.VERSION)) {
             version = 'v5.1';
             //not compatible with 5.0.1,  regex upper bounds would have been better
         } else if(bootstrap && bootstrap.Modal && /^5\.0\.[23456789]/.test(bootstrap.Modal.VERSION)) {
