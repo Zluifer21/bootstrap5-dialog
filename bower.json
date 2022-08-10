@@ -1,7 +1,7 @@
 {
     "name": "bootstrap4-dialog",
     "description": "Make use of Bootstrap Modal more monkey-friendly. https://github.com/GedMarc/bootstrap4-dialog",
-    "version": "4.4.2",
+    "version": "4.4.3",
     "keywords": [
         "css",
         "js",
