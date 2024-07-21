@@ -15,56 +15,40 @@
 
   <script src="libs/bootstrap5.js" type="text/javascript"></script>
 
-  <script src="../src/js/dialog.js" type="text/javascript"></script>
+  <script src="../src/js/bootstrap-dialog.js" type="text/javascript"></script>
 
 </head>
 <body>
-  <button type="button" class="btn btn-default" onclick="BootstrapDialog.show({
-    title: 'Button Hotkey',
-    message: document.createElement('textarea'),
-    buttons: [{
-        label: '(Enter) Button A',
-        cssClass: 'btn-primary',
-        hotkey: 13, // Enter.
-        action: function() {
-            alert('You pressed Enter.');
-        }
-    }]
-});">
+  <button type="button" class="btn btn-default" onclick="        
+        BootstrapDialog.show({
+            title: 'Button Hotkey',
+            message: 'Try to press some keys...',
+            onshow: function(dialog) {
+                dialog.getButton('button-c').disable();
+            },
+            buttons: [{
+                label: '(A) Button A',
+                hotkey: 65, // Keycode of keyup event of key 'A' is 65.
+                action: function() {
+                    alert('Finally, you loved Button A.');
+                }
+            }, {
+                label: '(B) Button B',
+                hotkey: 66,
+                action: function() {
+                    alert('Hello, this is Button B!');
+                }
+            }, {
+                id: 'button-c',
+                label: '(C) Button C',
+                hotkey: 67,
+                action: function(){
+                    alert('This is Button C but you won\'t see me dance.');
+                }
+            }]
+        })">
     Click to open dialog
   </button>
-
-
-
-<script>
-  var shortContent = '<p>Something here.</p>';
-        var longContent = '';
-        for(var i = 1; i <= 200; i++) {
-            longContent += shortContent;
-        }
-        BootstrapDialog.show({
-            title: 'Another long dialog',
-            message: longContent
-        });
-        BootstrapDialog.show({
-            title: 'Another short dialog',
-            message: shortContent,
-            draggable: true
-        });
-        BootstrapDialog.show({
-            title: 'A long dialog',
-            message: longContent,
-            draggable: true
-        });
-        BootstrapDialog.show({
-            title: 'A short dialog',
-            message: shortContent
-        });
-        BootstrapDialog.show({
-            title: 'A dialog with long message',
-            message: longContent
-        });
-</script>
 
 </body>
 </html>

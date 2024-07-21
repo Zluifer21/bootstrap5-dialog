@@ -93,10 +93,12 @@
         }
 
         handleModalEvents() {
+            console.log('handleModalEvents');
             var dialog = this;
-
+            console.log(dialog);
             function handleShow(event) {
                 dialog.setOpened(true);
+                console.log(dialog.isModalEvent(event));
                 if (dialog.isModalEvent(event) && typeof dialog.options.onshow === 'function') {
                     var openIt = dialog.options.onshow(dialog);
                     if (openIt === false) {

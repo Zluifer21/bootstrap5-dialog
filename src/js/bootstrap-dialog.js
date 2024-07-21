@@ -93,9 +93,11 @@
         }
 
         handleModalEvents() {
+            
             var dialog = this;
 
             function handleShow(event) {
+               
                 dialog.setOpened(true);
                 if (dialog.isModalEvent(event) && typeof dialog.options.onshow === 'function') {
                     var openIt = dialog.options.onshow(dialog);
@@ -163,7 +165,7 @@
         }
 
         isModalEvent(event) {
-            return event.type.startsWith('bs.modal');
+            return event.type.startsWith('show.bs.modal');
         }
 
         createModalDialog() {
